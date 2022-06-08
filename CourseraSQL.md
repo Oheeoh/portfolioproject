@@ -44,3 +44,70 @@ order by customers.customerId
 
 select invoices.invoiceId
 From invoices cross join invoice_items
+
+
+-----------------------------------------------------------------------------
+Module 3 Coding Assignment
+
+Join and subquery
+
+select name
+,albumId
+from tracks
+where albumId in (select albumId
+from Albums
+where title = 'Californication') 
+
+SELECT FirstName
+,LastName
+,City
+,Email
+,COUNT(I.CustomerId) AS Invoices
+FROM Customers C INNER JOIN Invoices I
+ON C.CustomerId = I.CustomerId
+GROUP BY C.CustomerI
+
+Select tracks.trackId
+,Tracks.Name as Artist
+,Albums.Title as albums
+From ((Tracks inner join Albums on Tracks.AlbumId = Albums.AlbumId)
+Inner join Artists a 
+on a.ArtistId = Albums.ArtistId)
+
+
+select
+M.LastName as manager
+,E. LastName as Employees
+From Employees E inner join Employees M
+on E.reportsTo = M.EmployeeId
+
+
+
+SELECT Name AS Artist
+,Artists.ArtistId
+,Albums.Title AS Album
+FROM Artists
+LEFT JOIN Albums
+ON Artists.ArtistId = Albums.ArtistId
+WHERE Album IS NULL
+
+----using union 
+
+select FirstName
+,LastName
+from employees
+UNION
+SELECT FirstName
+,LastName
+FROM Customers
+ORDER BY LastName DESC
+
+------
+SELECT C.FirstName
+,C.LastName
+,C.City AS CustomerCity
+,I.BillingCity
+FROM Customers C
+INNER JOIN Invoices I
+ON C.CustomerId = I.CustomerId
+WHERE CustomerCity != BillingCity
